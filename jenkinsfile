@@ -12,12 +12,12 @@ git branch :'main', url: 'https://github.com/Divz1991/jenkins-maven-demo.git'
 }
 stage('Build') {
 steps {
-sh 'mvn clean package'
+bat 'mvn clean package'
 }
 }
 stage ('Test') {
 steps {
-sh 'mvn test'
+bat 'mvn test'
 }
 }
 stage ('Report')
