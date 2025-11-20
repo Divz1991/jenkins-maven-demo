@@ -1,5 +1,5 @@
 pipeline {
-agent any
+agent any //instruct Jenkins to run the pipeline on any available agent (server/node)
 tools {
 maven 'Maven-3.9.11'
 jdk 'JDK17'
@@ -8,6 +8,7 @@ stages {
 stage('checkout') {
 steps {
 git branch:'main', url: 'https://github.com/Divz1991/jenkins-maven-demo.git'
+checkout scm
 }
 }
 stage('Build') {
@@ -25,6 +26,19 @@ stage ('Report')
 steps {
 junit 'target/surefire-reports/*.xml'
 }
+}
+}
+}
+//--Post-Build Actuions --
+post {
+always {
+cleanWs()
+}
+Success {
+echo 'Pipeline finished successfully ! Build is GREEN.'
+|
+failure {
+echo 'Pipeline failed. Check logs for details.'
 }
 }
 }
