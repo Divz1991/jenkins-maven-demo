@@ -29,16 +29,4 @@ junit 'target/surefire-reports/*.xml'
 }
 }
 }
-//--Post-Build Actuions --
-post {
-always {
-cleanWs()
-}
-Success {
-echo 'Pipeline finished successfully ! Build is GREEN.'
-|
-failure {
-echo 'Pipeline failed. Check logs for details.'
-}
-}
-}
+
